@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
             //   margin: theme.spacing(1),
             width: '50%',
             height: theme.spacing(16),
-            margin: '0px auto 15px auto',
+            margin: '0px auto 50px auto',
         },
     },
 }));
@@ -78,7 +78,7 @@ export default function GlobalStats() {
     return (
         <div className={classes.root}>
 
-            <Paper elevation={3} style={{ color: 'white', backgroundColor: 'blue' }}>
+            <Paper elevation={3} style={{ color: 'white', backgroundColor: 'rgba(0,0,255,0.8)' }}>
                 <Typography variant="h5" gutterBottom>
                     <br />
                     <NumberFormat value={globalStats && globalStats.results && globalStats.results[0].total_cases} displayType={'text'} thousandSeparator={true} />
@@ -87,7 +87,7 @@ export default function GlobalStats() {
                     Total Cases
                 </Typography>
             </Paper>
-            <Paper elevation={3} style={{ color: 'white', backgroundColor: 'orange' }}>
+            <Paper elevation={3} style={{ color: 'white', backgroundColor: 'rgba(255,165,0,0.8)' }}>
                 <Typography variant="h5" gutterBottom>
                     <br />
                     <NumberFormat value={globalStats && globalStats.results && globalStats.results[0].total_unresolved + globalStats.results[0].total_active_cases} displayType={'text'} thousandSeparator={true} />
@@ -96,7 +96,7 @@ export default function GlobalStats() {
                     Active
                 </Typography>
             </Paper>
-            <Paper elevation={3} style={{ color: 'white', backgroundColor: 'green' }}>
+            <Paper elevation={3} style={{ color: 'white', backgroundColor: 'rgba(0,128,0,0.8)' }}>
                 <Typography variant="h5" gutterBottom>
                     <br />
                     <NumberFormat value={globalStats && globalStats.results && globalStats.results[0].total_recovered} displayType={'text'} thousandSeparator={true} />
@@ -105,7 +105,7 @@ export default function GlobalStats() {
                     Recovered
                 </Typography>
             </Paper>
-            <Paper elevation={3} style={{ color: 'white', backgroundColor: 'red' }}>
+            <Paper elevation={3} style={{ color: 'white', backgroundColor: 'rgba(255,0,0,0.8)' }}>
                 <Typography variant="h5" gutterBottom >
                     <br />
                     <NumberFormat value={globalStats && globalStats.results && globalStats.results[0].total_deaths} displayType={'text'} thousandSeparator={true} />

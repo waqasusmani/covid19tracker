@@ -1,60 +1,47 @@
 import React, {useState, useEffect} from 'react';
-// import {Pie} from 'react-chartjs-2';
-
-// function GlobalChart(){
-// const [globalStats, setGlobalStats] = useState();
-// const [dataLoad, setDataLoad] = useState(false);
-
-// useEffect(() => {
-//     async function fetchGlobalStats(){
-//         setDataLoad(true);
-//         const apiResponse = await (await fetch("https://api.thevirustracker.com/free-api?global=stats")).json()
-//         console.log(apiResponse);
-//         setGlobalStats(apiResponse);
-//         setDataLoad(false);
-//     }
-//     fetchGlobalStats();
-// },[])
-
-// const data = {
-// 	labels: [
-// 		'Active',
-// 		'Recovered',
-// 		'Deaths'
-// 	],
-// 	datasets: [{
-//         data: [globalStats && globalStats.results && globalStats.results[0].total_unresolved + globalStats.results[0].total_active_cases,
-//                 globalStats && globalStats.results && globalStats.results[0].total_recovered,
-//                 globalStats && globalStats.results && globalStats.results[0].total_deaths],
-// 		backgroundColor: [
-// 		'#FFA500',
-// 		'green',
-//         'red',
-// 		],
-// 		hoverBackgroundColor: [
-// 		'#00BFFF',
-// 		'#36A2EB',
-// 		'#FFCE56'
-//         ],
-//         borderWidth: 1,
-//         borderColor: 'black'
-// 	}]
-// };
-
-//     return (
-//       <div>
-//         <h2>Pie Example</h2>
-//         <Pie data={data} />
-//       </div>
-//     );
-//   }
-
-//   export default GlobalChart;
-// import React from 'react';
+import {Pie} from 'react-chartjs-2';
 import {Bar} from 'react-chartjs-2';
 
+export function GlobalChart(){
+const [globalStats, setGlobalStats] = useState();
 
-function GlobalChart(){
+useEffect(() => {
+    async function fetchGlobalStats(){
+        const apiResponse = await (await fetch("https://api.thevirustracker.com/free-api?global=stats")).json()
+        console.log(apiResponse);
+        setGlobalStats(apiResponse);
+    }
+    fetchGlobalStats();
+},[])
+
+const data = {
+	labels: [
+		'Active',
+		'Recovered',
+		'Deaths'
+	],
+	datasets: [{
+        data: [globalStats && globalStats.results && globalStats.results[0].total_unresolved + globalStats.results[0].total_active_cases,
+                globalStats && globalStats.results && globalStats.results[0].total_recovered,
+                globalStats && globalStats.results && globalStats.results[0].total_deaths],
+		backgroundColor: ['rgba(255,165,0,0.7)','rgba(0,128,0,0.7)','rgba(255,0,0,0.7)'],
+		hoverBackgroundColor: ['rgba(255,165,0,1)','rgba(0,128,0,1)','rgba(255,0,0,1)'],
+        borderWidth: 1,
+        borderColor: 'grey',
+	}]
+};
+
+    return (
+      <div>
+          <br/><br/>
+        <Pie data={data} height='170px' />
+      </div>
+    );
+  }
+
+
+
+export function GlobalChart1(){
     const [globalStats, setGlobalStats] = useState();
 
     const data = {
