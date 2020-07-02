@@ -56,16 +56,17 @@ import {Bar} from 'react-chartjs-2';
 
 function GlobalChart(){
     const [globalStats, setGlobalStats] = useState();
+
     const data = {
         labels: ['Total', 'Active', 'Recovered', 'Deaths'],
         datasets: [
           {
             label: 'Cases',
-            backgroundColor: 'rgba(255,99,132,0.2)',
-            borderColor: 'rgba(255,99,132,1)',
+            backgroundColor: ['rgba(0,0,255,0.4)','rgba(255,165,0,0.4)','rgba(0,128,0,0.4)','rgba(255,0,0,0.4)'],
+            borderColor:  ['rgba(0,0,255,0.8)','rgba(255,165,0,0.8)','rgba(0,128,0,0.8)','rgba(255,0,0,0.8)'],
             borderWidth: 1,
-            hoverBackgroundColor: 'rgba(255,99,132,0.4)',
-            hoverBorderColor: 'rgba(255,99,132,1)',
+            hoverBackgroundColor:  ['rgba(0,0,255,0.8)','rgba(255,165,0,0.8)','rgba(0,128,0,0.8)','rgba(255,0,0,0.8)'],
+            hoverBorderColor: ['rgba(0,0,255,1)','rgba(255,165,0,1)','rgba(0,128,0,1)','rgba(255,0,0,1)'],
             data: [globalStats && globalStats.results && globalStats.results[0].total_cases,
                         globalStats && globalStats.results && globalStats.results[0].total_unresolved + globalStats.results[0].total_active_cases,
                         globalStats && globalStats.results && globalStats.results[0].total_recovered,
