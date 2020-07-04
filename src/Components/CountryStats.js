@@ -37,6 +37,7 @@ export default function CountryStats() {
             let data = await response.json();
             delete data.countryitems[0].stat
             setCountryData(Object.values(Object.values(data.countryitems)[0]));
+            console.log(data.countryitems[0].ourid)
             setDataLoad(false);
         }
         getData();
@@ -57,28 +58,28 @@ export default function CountryStats() {
     return (
         <div className={classes.root}>
             <Grid container spacing={1}>
-                {countryData.map((key, ind) => {
+                {countryData.map((key, index) => {
                     return (
-                        <Grid item xs={12} sm={3} className={classes.grid}>
+                        <Grid item xs={12} sm={3} className={classes.grid} key={index}>
                             <Paper elevation={3} style={{ color: 'blue', backgroundColor: 'white' }}>
-                                <Typography variant="h6" gutterBottom key={ind}>
-                                    {countryData[ind].title}
+                                <Typography variant="h6" gutterBottom>
+                                    {countryData[index].title}
                                 </Typography>
-                                <Typography variant="body1" gutterBottom key={ind} className={classes.typo}>
+                                <Typography variant="body1" gutterBottom className={classes.typo}>
                                     <span>Total Cases: </span>
-                                    <NumberFormat value={countryData[ind].total_cases} displayType={'text'} thousandSeparator={true} />
+                                    <NumberFormat value={countryData[index].total_cases} displayType={'text'} thousandSeparator={true} />
                                 </Typography>
-                                <Typography variant="body1" gutterBottom key={ind} className={classes.typo}>
+                                <Typography variant="body1" gutterBottom className={classes.typo}>
                                     <span>Active Cases: </span>
-                                    <NumberFormat value={countryData[ind].total_active_cases + countryData[ind].total_serious_cases} displayType={'text'} thousandSeparator={true} />
+                                    <NumberFormat value={countryData[index].total_active_cases + countryData[index].total_serious_cases} displayType={'text'} thousandSeparator={true} />
                                 </Typography>
-                                <Typography variant="body1" gutterBottom key={ind} className={classes.typo}>
+                                <Typography variant="body1" gutterBottom className={classes.typo}>
                                     <span>Recovered: </span>
-                                    <NumberFormat value={countryData[ind].total_recovered} displayType={'text'} thousandSeparator={true} />
+                                    <NumberFormat value={countryData[index].total_recovered} displayType={'text'} thousandSeparator={true} />
                                 </Typography>
-                                <Typography variant="body1" gutterBottom key={ind} className={classes.typo}>
+                                <Typography variant="body1" gutterBottom className={classes.typo}>
                                     <span>Deaths: </span>
-                                    <NumberFormat value={countryData[ind].total_deaths} displayType={'text'} thousandSeparator={true} />
+                                    <NumberFormat value={countryData[index].total_deaths} displayType={'text'} thousandSeparator={true} />
                                 </Typography>
                             </Paper>
                         </Grid>
@@ -86,42 +87,41 @@ export default function CountryStats() {
                 })}
 
             </Grid>
-        </div>
-        //         <table className={classes.table}>
-        //                     <thead>
-        //                         <tr className={classes.title}>
-        //                             <th>Country Name</th>
-        //                             <th>Total Cases</th>
-        //                             <th>Active Cases</th>
-        //                             <th>Recovered</th>
-        //                             <th>Deaths</th>
-        //                         </tr>
-        //                     </thead>
-        //                     <tbody>
-        //                         {countryData.map((key, ind) => {
-        //                             return (
-        //                                 <tr key={ind}>
-        //                                     <th className={classes.title1}>
-        //                                         {countryData[ind].title}
-        //                                     </th>
-        //                                     <td className={classes.figures}>
-        //                                         <NumberFormat value={countryData[ind].total_cases} displayType={'text'} thousandSeparator={true} />
-        //                                     </td>
-        //                                     <td className={classes.figures}>
-        //                                         <NumberFormat value={countryData[ind].total_active_cases + countryData[ind].total_serious_cases} displayType={'text'} thousandSeparator={true} />
-        //                                     </td>
-        //                                     <td className={classes.figures}>
-        //                                         <NumberFormat value={countryData[ind].total_recovered} displayType={'text'} thousandSeparator={true} />
-        //                                     </td>
-        //                                     <td className={classes.figures}>
-        //                                         <NumberFormat value={countryData[ind].total_deaths} displayType={'text'} thousandSeparator={true} />
-        //                                     </td>
-        //                                 </tr>
-        //                             )
-        //                         })}
-        //                     </tbody>
-        //                 </table>
+            {/* <table className={classes.table}>
+                            <thead>
+                                <tr className={classes.title}>
+                                    <th>Country Name</th>
+                                    <th>Total Cases</th>
+                                    <th>Active Cases</th>
+                                    <th>Recovered</th>
+                                    <th>Deaths</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {countryData.map((key, ind) => {
+                                    return (
+                                        <tr key={ind}>
+                                            <th className={classes.title1}>
+                                                {countryData[ind].title}
+                                            </th>
+                                            <td className={classes.figures}>
+                                                <NumberFormat value={countryData[ind].total_cases} displayType={'text'} thousandSeparator={true} />
+                                            </td>
+                                            <td className={classes.figures}>
+                                                <NumberFormat value={countryData[ind].total_active_cases + countryData[ind].total_serious_cases} displayType={'text'} thousandSeparator={true} />
+                                            </td>
+                                            <td className={classes.figures}>
+                                                <NumberFormat value={countryData[ind].total_recovered} displayType={'text'} thousandSeparator={true} />
+                                            </td>
+                                            <td className={classes.figures}>
+                                                <NumberFormat value={countryData[ind].total_deaths} displayType={'text'} thousandSeparator={true} />
+                                            </td>
+                                        </tr>
+                                    )
+                                })}
+                            </tbody>
+                        </table> */}
 
-        //             </div>
+        </div>
     );
 }
