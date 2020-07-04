@@ -34,7 +34,7 @@ const data = {
     return (
       <div>
           <br/><br/>
-        <Pie data={data} height='170px' />
+        <Pie data={data} height= {170} />
       </div>
     );
   }

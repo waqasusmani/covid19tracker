@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import NumberFormat from 'react-number-format';
+import Loading from './Loading'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -17,11 +18,12 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function GlobalStats() {
+export default function GlobalStats({currentScreen}) {
     const classes = useStyles();
 
     const [globalStats, setGlobalStats] = useState();
     const [dataLoad, setDataLoad] = useState(false);
+    console.log(currentScreen)
 
     useEffect(() => {
         async function fetchGlobalStats() {
@@ -34,43 +36,22 @@ export default function GlobalStats() {
         fetchGlobalStats();
     }, [])
 
-    const loading = 'Loading...'
     if (dataLoad) {
         return (
             <div className={classes.root}>
 
-                <Paper elevation={3} style={{ color: 'white', backgroundColor: 'blue' }}>
-                    <Typography variant="h5" gutterBottom>
-                        {loading}
-                    </Typography>
-                    <Typography variant="subtitle1" gutterBottom>
-                        Total Cases
-                    </Typography>
+                <Paper elevation={3} style={{ color: 'white', backgroundColor: 'blue'}}>
+                        <Loading color="secondary"/>
                 </Paper>
                 <Paper elevation={3} style={{ color: 'white', backgroundColor: 'orange' }}>
-                    <Typography variant="h5" gutterBottom>
-                        {loading}
-                    </Typography>
-                    <Typography variant="subtitle1" gutterBottom>
-                        Active
-                    </Typography>
+                    <Loading color="secondary"/>                
                 </Paper>
                 <Paper elevation={3} style={{ color: 'white', backgroundColor: 'green' }}>
-                    <Typography variant="h5" gutterBottom>
-                        {loading}
-                    </Typography>
-                    <Typography variant="subtitle1" gutterBottom>
-                        Recovered
-                    </Typography>
+                    <Loading color="secondary"/>
                 </Paper>
                 <Paper elevation={3} style={{ color: 'white', backgroundColor: 'red' }}>
-                    <Typography variant="h5" gutterBottom >
-                        {loading}
-                    </Typography>
-                    <Typography variant="subtitle1" gutterBottom>
-                        Deaths
-                    </Typography>
-                </Paper>
+                    <Loading color="secondary"/>
+               </Paper>
             </div>
         );
     }
