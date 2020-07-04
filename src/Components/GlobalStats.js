@@ -29,7 +29,6 @@ export default function GlobalStats({currentScreen}) {
         async function fetchGlobalStats() {
             setDataLoad(true);
             const apiResponse = await (await fetch("https://api.thevirustracker.com/free-api?global=stats")).json()
-            console.log(apiResponse);
             setGlobalStats(apiResponse);
             setDataLoad(false);
         }
