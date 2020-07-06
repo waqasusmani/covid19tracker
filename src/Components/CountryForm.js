@@ -4,6 +4,8 @@ import NumberFormat from 'react-number-format';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import FormControl from '@material-ui/core/FormControl';
+import { NativeSelect } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -27,9 +29,11 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function CountryStats() {
+export default function CountryForm() {
     const [countryData, setCountryData] = useState([{}]);
     const [dataLoad, setDataLoad] = useState(false);
+    const [country1, setCountry] = useState({});
+
     useEffect(() => {
         async function getData() {
             setDataLoad(true);
@@ -41,6 +45,23 @@ export default function CountryStats() {
         }
         getData();
     }, [])
+
+
+    function handleChange(val) {
+        countryData.map((key, index) => {
+            if (countryData[index].title === val) {
+                console.log(countryData[index])
+                setCountry(countryData[index]);
+                console.log(country1);
+                // console.log(countryData && countryData[index] && country[index])
+            }
+            return (
+                <div>
+                </div>
+            )
+        }
+        )
+    }
 
     const classes = useStyles();
     if (dataLoad) {
@@ -56,15 +77,13 @@ export default function CountryStats() {
     }
     return (
         <div className={classes.root}>
-            <Grid container spacing={1}>
+            {/* <Grid container spacing={1}>
                 {countryData.map((key, index) => {
                     return (
                         <Grid item xs={12} sm={3} className={classes.grid} key={index}>
                             <Paper elevation={3} style={{ color: 'blue', backgroundColor: 'white' }}>
                                 <Typography variant="h6" gutterBottom>
                                     {countryData[index].title}
-                                    {console.log(countryData)}
-                                    {console.log(countryData[index])}
                                 </Typography>
                                 <Typography variant="body1" gutterBottom className={classes.typo}>
                                     <span>Total Cases: </span>
@@ -87,42 +106,59 @@ export default function CountryStats() {
                     )
                 })}
 
-            </Grid>
-            {/* <table className={classes.table}>
-                            <thead>
-                                <tr className={classes.title}>
-                                    <th>Country Name</th>
-                                    <th>Total Cases</th>
-                                    <th>Active Cases</th>
-                                    <th>Recovered</th>
-                                    <th>Deaths</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {countryData.map((key, ind) => {
-                                    return (
-                                        <tr key={ind}>
-                                            <th className={classes.title1}>
-                                                {countryData[ind].title}
-                                            </th>
-                                            <td className={classes.figures}>
-                                                <NumberFormat value={countryData[ind].total_cases} displayType={'text'} thousandSeparator={true} />
-                                            </td>
-                                            <td className={classes.figures}>
-                                                <NumberFormat value={countryData[ind].total_active_cases + countryData[ind].total_serious_cases} displayType={'text'} thousandSeparator={true} />
-                                            </td>
-                                            <td className={classes.figures}>
-                                                <NumberFormat value={countryData[ind].total_recovered} displayType={'text'} thousandSeparator={true} />
-                                            </td>
-                                            <td className={classes.figures}>
-                                                <NumberFormat value={countryData[ind].total_deaths} displayType={'text'} thousandSeparator={true} />
-                                            </td>
-                                        </tr>
-                                    )
-                                })}
-                            </tbody>
-                        </table> */}
+            </Grid> */}
+            <FormControl>
+                <NativeSelect defaultValue='' onChange={(e) => handleChange(e.target.value)}>
+                    {countryData.map((key, index) =>
+                        <option key={index} value={countryData[index].title}>
+                            {countryData[index].title}
+                        </option>)}
+                </NativeSelect>
+            </FormControl>
+            <div>
+                <Paper elevation={3} style={{ color: 'white', backgroundColor: 'rgba(0,0,255,0.8)' }}>
+                    <Typography variant="h5" gutterBottom>
+                        <br />
+                        <NumberFormat value={country1.total_cases} displayType={'text'} thousandSeparator={true} />
+                    </Typography>
+                    <Typography variant="subtitle1" gutterBottom>
+                        Total Cases
+                        </Typography>
+                </Paper>
+            </div>
 
-        </div>
+            <Paper elevation={3} style={{ color: 'white', backgroundColor: 'rgba(255,165,0,0.8)' }}>
+                <Typography variant="h5" gutterBottom>
+                    <br />
+                    <NumberFormat value={country1.total_unresolved + country1.total_active_cases} displayType={'text'} thousandSeparator={true} />
+                </Typography>
+                <Typography variant="subtitle1" gutterBottom>
+                    Active
+                    </Typography>
+            </Paper>
+            <Paper elevation={3} style={{ color: 'white', backgroundColor: 'rgba(0,128,0,0.8)' }}>
+                <Typography variant="h5" gutterBottom>
+                    <br />
+                    <NumberFormat value={country1.total_recovered} displayType={'text'} thousandSeparator={true} />
+                </Typography>
+                <Typography variant="subtitle1" gutterBottom>
+                    Recovered
+                    </Typography>
+            </Paper>
+            <Paper elevation={3} style={{ color: 'white', backgroundColor: 'rgba(255,0,0,0.8)' }}>
+                <Typography variant="h5" gutterBottom >
+                    <br />
+                    <NumberFormat value={country1.total_deaths} displayType={'text'} thousandSeparator={true} />
+                </Typography>
+                <Typography variant="subtitle1" gutterBottom>
+                    Deaths
+                    </Typography>
+            </Paper>
+
+
+
+
+
+       </div >
     );
 }
