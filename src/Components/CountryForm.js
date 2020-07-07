@@ -6,13 +6,25 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import FormControl from '@material-ui/core/FormControl';
 import { NativeSelect } from '@material-ui/core';
+import { Pie } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
         display: 'flex',
-        textAlign: 'center',
-        justifyContent: 'center'
+        // flexWrap: 'wrap',
+        '& > *': {
+            //   margin: theme.spacing(1),
+            width: '20%',
+            height: theme.spacing(16),
+            margin: '0px auto 0px auto',
+        },
+
+    },
+    form: {
+        margin: '-10px auto 40px auto',
     },
     paper: {
         padding: 10,
@@ -53,7 +65,6 @@ export default function CountryForm() {
                 console.log(countryData[index])
                 setCountry(countryData[index]);
                 console.log(country1);
-                // console.log(countryData && countryData[index] && country[index])
             }
             return (
                 <div>
@@ -62,6 +73,41 @@ export default function CountryForm() {
         }
         )
     }
+
+    const dataPieChart = {
+        labels: [
+            'Active',
+            'Recovered',
+            'Deaths'
+        ],
+        datasets: [{
+            data: [country1.total_serious_cases + country1.total_active_cases,
+            country1.total_recovered,
+            country1.total_deaths],
+            backgroundColor: ['rgba(255,165,0,0.7)', 'rgba(0,128,0,0.7)', 'rgba(255,0,0,0.7)'],
+            hoverBackgroundColor: ['rgba(255,165,0,1)', 'rgba(0,128,0,1)', 'rgba(255,0,0,1)'],
+            borderWidth: 1,
+            borderColor: 'grey',
+        }]
+    };
+
+    const dataBarChart = {
+        labels: ['Total', 'Active', 'Recovered', 'Deaths'],
+        datasets: [
+          {
+            label: 'Cases',
+            backgroundColor: ['rgba(0,0,255,0.4)','rgba(255,165,0,0.4)','rgba(0,128,0,0.4)','rgba(255,0,0,0.4)'],
+            borderColor:  ['rgba(0,0,255,0.8)','rgba(255,165,0,0.8)','rgba(0,128,0,0.8)','rgba(255,0,0,0.8)'],
+            borderWidth: 1,
+            hoverBackgroundColor:  ['rgba(0,0,255,0.8)','rgba(255,165,0,0.8)','rgba(0,128,0,0.8)','rgba(255,0,0,0.8)'],
+            hoverBorderColor: ['rgba(0,0,255,1)','rgba(255,165,0,1)','rgba(0,128,0,1)','rgba(255,0,0,1)'],
+            data: [country1.total_cases,
+                        country1.total_serious_cases + country1.total_active_cases,
+                        country1.total_recovered,
+                        country1.total_deaths]
+          }
+        ]
+      };      
 
     const classes = useStyles();
     if (dataLoad) {
@@ -76,46 +122,19 @@ export default function CountryForm() {
         )
     }
     return (
-        <div className={classes.root}>
-            {/* <Grid container spacing={1}>
-                {countryData.map((key, index) => {
-                    return (
-                        <Grid item xs={12} sm={3} className={classes.grid} key={index}>
-                            <Paper elevation={3} style={{ color: 'blue', backgroundColor: 'white' }}>
-                                <Typography variant="h6" gutterBottom>
-                                    {countryData[index].title}
-                                </Typography>
-                                <Typography variant="body1" gutterBottom className={classes.typo}>
-                                    <span>Total Cases: </span>
-                                    <NumberFormat value={countryData[index].total_cases} displayType={'text'} thousandSeparator={true} />
-                                </Typography>
-                                <Typography variant="body1" gutterBottom className={classes.typo}>
-                                    <span>Active Cases: </span>
-                                    <NumberFormat value={countryData[index].total_active_cases + countryData[index].total_serious_cases} displayType={'text'} thousandSeparator={true} />
-                                </Typography>
-                                <Typography variant="body1" gutterBottom className={classes.typo}>
-                                    <span>Recovered: </span>
-                                    <NumberFormat value={countryData[index].total_recovered} displayType={'text'} thousandSeparator={true} />
-                                </Typography>
-                                <Typography variant="body1" gutterBottom className={classes.typo}>
-                                    <span>Deaths: </span>
-                                    <NumberFormat value={countryData[index].total_deaths} displayType={'text'} thousandSeparator={true} />
-                                </Typography>
-                            </Paper>
-                        </Grid>
-                    )
-                })}
-
-            </Grid> */}
-            <FormControl>
-                <NativeSelect defaultValue='' onChange={(e) => handleChange(e.target.value)}>
-                    {countryData.map((key, index) =>
-                        <option key={index} value={countryData[index].title}>
-                            {countryData[index].title}
-                        </option>)}
-                </NativeSelect>
-            </FormControl>
-            <div>
+        <div>
+            <div className={classes.form}>
+                <FormControl>
+                    <NativeSelect defaultValue='' onChange={(e) => handleChange(e.target.value)}>
+                        <option>Select Country</option>
+                        {countryData.map((key, index) =>
+                            <option key={index} value={countryData[index].title}>
+                                {countryData[index].title}
+                            </option>)}
+                    </NativeSelect>
+                </FormControl>
+            </div>
+            <div className={classes.root}>
                 <Paper elevation={3} style={{ color: 'white', backgroundColor: 'rgba(0,0,255,0.8)' }}>
                     <Typography variant="h5" gutterBottom>
                         <br />
@@ -125,40 +144,53 @@ export default function CountryForm() {
                         Total Cases
                         </Typography>
                 </Paper>
+                <Paper elevation={3} style={{ color: 'white', backgroundColor: 'rgba(255,165,0,0.8)' }}>
+                    <Typography variant="h5" gutterBottom>
+                        <br />
+                        <NumberFormat value={country1.total_serious_cases + country1.total_active_cases} displayType={'text'} thousandSeparator={true} />
+                    </Typography>
+                    <Typography variant="subtitle1" gutterBottom>
+                        Active
+                        </Typography>
+                </Paper>
+                <Paper elevation={3} style={{ color: 'white', backgroundColor: 'rgba(0,128,0,0.8)' }}>
+                    <Typography variant="h5" gutterBottom>
+                        <br />
+                        <NumberFormat value={country1.total_recovered} displayType={'text'} thousandSeparator={true} />
+                    </Typography>
+                    <Typography variant="subtitle1" gutterBottom>
+                        Recovered
+                        </Typography>
+                </Paper>
+                <Paper elevation={3} style={{ color: 'white', backgroundColor: 'rgba(255,0,0,0.8)' }}>
+                    <Typography variant="h5" gutterBottom >
+                        <br />
+                        <NumberFormat value={country1.total_deaths} displayType={'text'} thousandSeparator={true} />
+                    </Typography>
+                    <Typography variant="subtitle1" gutterBottom>
+                        Deaths
+                    </Typography>
+                </Paper>
+            </div >
+            
+            <div>
+                <br />
+                <br />
+                <Bar
+                    data={dataBarChart}
+                    width={9.5}
+                    height={4}
+                    options={{
+                        maintainAspectRatio: true
+                    }}
+                />
             </div>
 
-            <Paper elevation={3} style={{ color: 'white', backgroundColor: 'rgba(255,165,0,0.8)' }}>
-                <Typography variant="h5" gutterBottom>
-                    <br />
-                    <NumberFormat value={country1.total_unresolved + country1.total_active_cases} displayType={'text'} thousandSeparator={true} />
-                </Typography>
-                <Typography variant="subtitle1" gutterBottom>
-                    Active
-                    </Typography>
-            </Paper>
-            <Paper elevation={3} style={{ color: 'white', backgroundColor: 'rgba(0,128,0,0.8)' }}>
-                <Typography variant="h5" gutterBottom>
-                    <br />
-                    <NumberFormat value={country1.total_recovered} displayType={'text'} thousandSeparator={true} />
-                </Typography>
-                <Typography variant="subtitle1" gutterBottom>
-                    Recovered
-                    </Typography>
-            </Paper>
-            <Paper elevation={3} style={{ color: 'white', backgroundColor: 'rgba(255,0,0,0.8)' }}>
-                <Typography variant="h5" gutterBottom >
-                    <br />
-                    <NumberFormat value={country1.total_deaths} displayType={'text'} thousandSeparator={true} />
-                </Typography>
-                <Typography variant="subtitle1" gutterBottom>
-                    Deaths
-                    </Typography>
-            </Paper>
-
-
-
-
-
-       </div >
+            <div>
+                <br /><br />
+                <Pie data={dataPieChart} height={100} />
+            </div>
+        </div>
     );
 }
+

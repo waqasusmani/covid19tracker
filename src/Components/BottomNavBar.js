@@ -17,20 +17,19 @@ const useStyles = makeStyles({
 export default function BottomNavBar({screenSwap}) {
   const classes = useStyles();
   console.log(screenSwap)
-//   const [value, setValue] = useState(0)
 
   return (
     <BottomNavigation
       value={screenSwap}
       onChange={(event, newValue) => {
         screenSwap[1](newValue);
-        console.log(screenSwap[0])
       }}
       showLabels
       className={classes.root}
     >
       <BottomNavigationAction label="Global Stats" icon={<RestoreIcon />} />
-      <BottomNavigationAction label="Country wise Stats" icon={<FindReplaceIcon />} />
+      <BottomNavigationAction label="All Country wise Stats" icon={<FindReplaceIcon />} />
+      <BottomNavigationAction label="Country wise Analysis" icon={<FindReplaceIcon />} />
     </BottomNavigation>
   );
 }

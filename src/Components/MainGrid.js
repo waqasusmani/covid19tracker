@@ -6,7 +6,7 @@ import GlobalStats from './GlobalStats';
 import { GlobalChart } from './GlobalChart';
 import { GlobalChart1 } from './GlobalChart';
 import CountryStats from './CountryStats';
-
+import CountryForm from './CountryForm';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -35,7 +35,6 @@ export default function MainGrid({ currentScreen }) {
             <div className={classes.root}>
                 <Grid container spacing={3}>
                     <Grid item xs={'auto'} sm={1}>
-
                     </Grid>
                     <Grid item xs={12} sm={4}>
                         <Paper className={classes.paper}>
@@ -58,8 +57,23 @@ export default function MainGrid({ currentScreen }) {
                     <CountryStats/>
                 </Grid>     
             </Grid>
-        )
-    else return (
+        );
+    else if (currentScreen === 2)
+            return(
+                <div className={classes.root}>
+                <Grid container spacing={3}>
+                    <Grid item xs={'auto'} sm={1}>
+                    </Grid>
+                    <Grid item xs={12} sm={10}>
+                        <Paper className={classes.paper}>
+                            <CountryForm/>
+                        </Paper>
+                    </Grid>
+
+                </Grid>
+            </div>
+            );
+        else return (
         <div className={classes.root}>
             <Grid container spacing={3}>
                 <Grid item xs={'auto'} sm={1}>

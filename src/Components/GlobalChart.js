@@ -49,6 +49,7 @@ export function GlobalChart1(){
         datasets: [
           {
             label: 'Cases',
+            display: 'none',
             backgroundColor: ['rgba(0,0,255,0.4)','rgba(255,165,0,0.4)','rgba(0,128,0,0.4)','rgba(255,0,0,0.4)'],
             borderColor:  ['rgba(0,0,255,0.8)','rgba(255,165,0,0.8)','rgba(0,128,0,0.8)','rgba(255,0,0,0.8)'],
             borderWidth: 1,

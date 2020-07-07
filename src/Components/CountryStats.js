@@ -10,15 +10,15 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         display: 'flex',
         textAlign: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     paper: {
         padding: 10,
         color: theme.palette.text.secondary,
-        margin: '0px auto 50px auto',
+        margin: '0px auto 50px 20px',
     },
     grid: {
-        margin: '10px 20px 10px 20px',
+        margin: '10px auto 10px auto',
     },
     typo: {
         textAlign: 'left',
@@ -56,15 +56,13 @@ export default function CountryStats() {
     }
     return (
         <div className={classes.root}>
-            <Grid container spacing={1}>
+            <Grid container spacing={3}>
                 {countryData.map((key, index) => {
                     return (
                         <Grid item xs={12} sm={3} className={classes.grid} key={index}>
                             <Paper elevation={3} style={{ color: 'blue', backgroundColor: 'white' }}>
                                 <Typography variant="h6" gutterBottom>
                                     {countryData[index].title}
-                                    {console.log(countryData)}
-                                    {console.log(countryData[index])}
                                 </Typography>
                                 <Typography variant="body1" gutterBottom className={classes.typo}>
                                     <span>Total Cases: </span>
@@ -86,6 +84,7 @@ export default function CountryStats() {
                         </Grid>
                     )
                 })}
+                
 
             </Grid>
             {/* <table className={classes.table}>
