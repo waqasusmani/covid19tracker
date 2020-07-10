@@ -7,6 +7,8 @@ import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
+        textAlign: 'center',
+        fontStyle: 'italic'
     },
     title: {
         flexGrow: 1,
@@ -17,10 +19,10 @@ export function Header() {
     const classes = useStyles();
     return (
         <div className={classes.root}>
-            <AppBar position="static" style={{ backgroundColor: 'purple' }}>
+            <AppBar position="sticky" style={{ backgroundColor: 'gold' }}>
                 <Toolbar>
                     <Typography variant="h6" className={classes.title}>
-                        COVID-19 Tracker
+                        Track Covid 19 Statistics around the globe
                     </Typography>
                 </Toolbar>
             </AppBar>

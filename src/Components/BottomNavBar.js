@@ -2,16 +2,16 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-import RestoreIcon from '@material-ui/icons/Restore';
-import FindReplaceIcon from '@material-ui/icons/FindReplace';
+import EmojiFlagsTwoToneIcon from '@material-ui/icons/EmojiFlagsTwoTone';
+import FeaturedPlayListTwoToneIcon from '@material-ui/icons/FeaturedPlayListTwoTone';
+import PublicTwoToneIcon from '@material-ui/icons/PublicTwoTone';
 
 const useStyles = makeStyles({
   root: {
-    width: 500,
     display: 'flex',
-    justifyContent: 'center',
-    margin: '20px auto',
-  },
+    justifyContent: 'space-around',
+    backgroundColor: 'rgba(0,0,0,0.1)',
+    },
 });
 
 export default function BottomNavBar({screenSwap}) {
@@ -27,9 +27,9 @@ export default function BottomNavBar({screenSwap}) {
       showLabels
       className={classes.root}
     >
-      <BottomNavigationAction label="Global Stats" icon={<RestoreIcon />} />
-      <BottomNavigationAction label="All Country wise Stats" icon={<FindReplaceIcon />} />
-      <BottomNavigationAction label="Country wise Analysis" icon={<FindReplaceIcon />} />
+      <BottomNavigationAction label="Worldwide" icon={<PublicTwoToneIcon />} />
+      <BottomNavigationAction label="Countrywise" icon={<FeaturedPlayListTwoToneIcon />} />
+      <BottomNavigationAction label="Search your country" icon={<EmojiFlagsTwoToneIcon />} />
     </BottomNavigation>
   );
 }

@@ -60,7 +60,7 @@ export default function CountryStats() {
                 {countryData.map((key, index) => {
                     return (
                         <Grid item xs={12} sm={3} className={classes.grid} key={index}>
-                            <Paper elevation={3} style={{ color: 'blue', backgroundColor: 'white' }}>
+                            <Paper elevation={3} style={{ color: 'gold', backgroundColor: 'white' }}>
                                 <Typography variant="h6" gutterBottom>
                                     {countryData[index].title}
                                 </Typography>
@@ -84,44 +84,8 @@ export default function CountryStats() {
                         </Grid>
                     )
                 })}
-                
-
+       
             </Grid>
-            {/* <table className={classes.table}>
-                            <thead>
-                                <tr className={classes.title}>
-                                    <th>Country Name</th>
-                                    <th>Total Cases</th>
-                                    <th>Active Cases</th>
-                                    <th>Recovered</th>
-                                    <th>Deaths</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {countryData.map((key, ind) => {
-                                    return (
-                                        <tr key={ind}>
-                                            <th className={classes.title1}>
-                                                {countryData[ind].title}
-                                            </th>
-                                            <td className={classes.figures}>
-                                                <NumberFormat value={countryData[ind].total_cases} displayType={'text'} thousandSeparator={true} />
-                                            </td>
-                                            <td className={classes.figures}>
-                                                <NumberFormat value={countryData[ind].total_active_cases + countryData[ind].total_serious_cases} displayType={'text'} thousandSeparator={true} />
-                                            </td>
-                                            <td className={classes.figures}>
-                                                <NumberFormat value={countryData[ind].total_recovered} displayType={'text'} thousandSeparator={true} />
-                                            </td>
-                                            <td className={classes.figures}>
-                                                <NumberFormat value={countryData[ind].total_deaths} displayType={'text'} thousandSeparator={true} />
-                                            </td>
-                                        </tr>
-                                    )
-                                })}
-                            </tbody>
-                        </table> */}
-
         </div>
     );
 }

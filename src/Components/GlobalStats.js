@@ -39,16 +39,16 @@ export default function GlobalStats({currentScreen}) {
         return (
             <div className={classes.root}>
 
-                <Paper elevation={3} style={{ color: 'white', backgroundColor: 'blue'}}>
+                <Paper elevation={3} style={{ color: 'white', backgroundColor: 'blue', display: 'flex', alignItems:'center', justifyContent:'center'}}>
                         <Loading color="secondary"/>
                 </Paper>
-                <Paper elevation={3} style={{ color: 'white', backgroundColor: 'orange' }}>
+                <Paper elevation={3} style={{ color: 'white', backgroundColor: 'orange', display: 'flex', alignItems:'center', justifyContent:'center' }}>
                     <Loading color="secondary"/>                
                 </Paper>
-                <Paper elevation={3} style={{ color: 'white', backgroundColor: 'green' }}>
+                <Paper elevation={3} style={{ color: 'white', backgroundColor: 'green', display: 'flex', alignItems:'center', justifyContent:'center' }}>
                     <Loading color="secondary"/>
                 </Paper>
-                <Paper elevation={3} style={{ color: 'white', backgroundColor: 'red' }}>
+                <Paper elevation={3} style={{ color: 'white', backgroundColor: 'red', display: 'flex', alignItems:'center', justifyContent:'center' }}>
                     <Loading color="secondary"/>
                </Paper>
             </div>

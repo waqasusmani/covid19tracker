@@ -9,8 +9,9 @@ function App() {
   return (
     <div>
       <Header />
-      <MainGrid currentScreen = {screenSwap[0]} />
       <BottomNavBar screenSwap = {screenSwap}/>
+      <MainGrid currentScreen = {screenSwap[0]} />
+
     </div>
   );
 }
